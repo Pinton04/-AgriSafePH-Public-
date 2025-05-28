@@ -1,0 +1,157 @@
+/* === Base Reset === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background: #f5f7f9;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Shared Container === */
+.container {
+  background: #ffffff;
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.08);
+  width: 90%;
+  max-width: 400px;
+  margin: 5vh auto;
+}
+
+
+/* === Header === */
+header {
+  background-color: #1e4d2b;
+  color: white;
+  padding: 1rem 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* === Form Elements === */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+form input,
+form button {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+form input:focus {
+  border-color: #3399ff;
+  outline: none;
+}
+
+form button {
+  background-color: #3399ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #1d7ae2;
+}
+
+/* === Headings === */
+h2 {
+  text-align: center;
+  color: #1e4d2b;
+  margin-bottom: 1.5rem;
+}
+
+/* === Messages === */
+.message {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 14px;
+  color: #d9534f;
+}
+.message.success {
+  color: #28a745;
+}
+
+/* === Link and Navigation === */
+.back-btn,
+a {
+  display: center;
+  margin-top: 1rem;
+  padding: 10px 94px;
+  background-color: #eee;
+  color: #333;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 14px;
+  text-decoration: none;
+  transition: background 0.3s;
+  
+}
+
+.back-btn:hover,
+a:hover {
+  background-color: #ddd;
+  color: #000;
+  text-decoration: underline;
+  
+}
+
+/* === Responsive === */
+@media (max-width: 900px) {
+  .container {
+    padding: 2rem;
+    margin: 2rem;
+    width: 100%;
+  }
+}
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 3rem; /* space for the eye icon */
+  height: 3rem; /* match other inputs */
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  outline-offset: 0;
+}
+
+.password-wrapper input:focus {
+  border-color: #3399ff;
+  outline: none;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.25rem;
+  color: #666;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.toggle-password:hover {
+  color: #3399ff;
+}

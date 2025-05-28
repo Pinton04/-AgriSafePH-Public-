@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Report Incident – AgriSafePH</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Override container width for public page */
+    .container {
+      max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌾 AgriSafePH Public Report</h1>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Report an Agricultural Incident</h2>
+      <form id="publicReportForm">
+        <input type="text" id="type" placeholder="Incident Type (e.g., Pest, Theft)" required />
+        <input type="text" id="location" placeholder="Location (e.g., Bukidnon)" required />
+
+        <select id="severity" required>
+          <option value="">Select Severity</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+
+        <textarea id="description" placeholder="Describe the incident..." required></textarea>
+
+        <div class="password-wrapper" style="display: none;"></div>
+        <!-- no password here, so hide the wrapper -->
+
+        <button type="submit">Submit Report</button>
+      </form>
+
+      <p id="publicReportMessage" class="message"></p>
+
+     
+    </div>
+  </main>
+
+  <!-- 1) Supabase JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.5/dist/umd/supabase.min.js"></script>
+  <!-- 2) Your shared logic -->
+  <script src="script.js" defer></script>
+  <!-- 3) Public-report submission handler -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('publicReportForm');
+      form.addEventListener('submit', async e => {
+        e.preventDefault();
+        const type = document.getElementById('type').value;
+        const location = document.getElementById('location').value;
+        const severity = document.getElementById('severity').value;
+        const description = document.getElementById('description').value;
+
+        // Insert directly into 'incidents' table
+        const { error } = await supabase
+          .from('incidents')
+          .insert([{ type, location, severity, description, status: 'pending' }]);
+
+        const msgEl = document.getElementById('publicReportMessage');
+        if (error) {
+          msgEl.innerText = '❌ Failed to submit. Please try again.';
+        } else {
+          msgEl.innerText = '✅ Thank you! Your report has been submitted.';
+          form.reset();
+        }
+      });
+    });
+  </script>
+  
+</body>
+</html>
